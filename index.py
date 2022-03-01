@@ -22,7 +22,7 @@ class MalaDireta:
         sg.theme("Reddit")
         layout = [
             [sg.Text("Tela do sistema de Mala Direta", size=(39, 0))],
-            [sg.Text(f"PATH: {self.path}", font="arial", text_color="green", size=(39, 0))],
+            [sg.Text(f"PATH: {self.path}", font="cambria", text_color="green", size=(39, 0))],
             [sg.Output(size=(50, 10), key="terminal")],
             [sg.Button('Enviar', disabled=False, size=10)],
             [sg.Button('Finalizar', size=10)]
@@ -72,8 +72,7 @@ class MalaDireta:
                     else:
                         print(f"{i + 1} # Email Duplicado. {email_excel}")
                         continue
-                    print("ENVIO FINALIZADO.")
-                    break
+                print("ENVIO FINALIZADO.")
             if self.eventos == "Finalizar":  # BOTÃO FINALIZAR
                 print("Finalizando o sistema...")
                 time.sleep(4)
