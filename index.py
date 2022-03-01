@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------
 # Created By  : Ricardo Antonio Cardoso
 # Created Date: Fev-2022
-# version ='1.1'
+# version ='1.2'
 # ---------------------------------------------------------------------------
 import time
 import win32com.client as win32
