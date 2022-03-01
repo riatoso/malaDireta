@@ -1,13 +1,23 @@
+# MODULO DE MALA DIRETA INTEGRADO COM OUTLOOK
 # -*- coding: utf-8 -*-
+# ----------------------------------------------------------------------------
+# Created By  : Ricardo Antonio Cardoso
+# Created Date: Fev-2022
+# version ='1.1'
+# ---------------------------------------------------------------------------
 import time
 import win32com.client as win32
 import pandas as pd
 
-# PANDAS EMAIL
-tabela = pd.read_excel('D:/GITHUB/Projetos/malaDireta/mala.xlsx')
+def conexao_pandas():
+    # PANDAS EMAIL
+    tabela = pd.read_excel('D:/GITHUB/Projetos/malaDireta/mala.xlsx')
+    return tabela
 
-# INTEGRAÇÃO COM OUTLOOK
-outlook = win32.Dispatch('outlook.application')
+def integracao_outlook():
+    # INTEGRAÇÃO COM OUTLOOK
+    outlook = win32.Dispatch('outlook.application')
+    return outlook
 
 def mala_direta():
     for i, email_excel in enumerate(tabela["email"]):
