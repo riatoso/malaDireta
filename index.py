@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------
 # Created By  : Ricardo Antonio Cardoso
 # Created Date: Fev-2022
-# version ='1.2'
+# version ='2.0'
 # ---------------------------------------------------------------------------
 import time
 import win32com.client as win32
@@ -21,9 +21,11 @@ class MalaDireta:
         # CRIA O LAYOUT
         sg.theme("Reddit")
         layout = [
-            [sg.Text("Tela do sistema de Mala Direta", size=(39, 0))],
-            [sg.Text(f"PATH: {self.path}", font="cambria", text_color="green", size=(39, 0))],
-            [sg.Output(size=(50, 10), key="terminal")],
+            [sg.Text("Tela do sistema de Mala Direta", size=(50, 0))],
+            [sg.Text("Campos obrigatorios (*) ", size=20)],
+            [sg.Text(" * Assunto do Email: ", size=15), sg.Input(key="assunto", size=(37, 0))],
+            [sg.Text(f"PATH: {self.path}", text_color="green", size=(39, 0))],
+            [sg.Output(size=(55, 5), key="terminal")],
             [sg.Button('Enviar', disabled=False, size=10)],
             [sg.Button('Finalizar', size=10)]
         ]
@@ -31,10 +33,12 @@ class MalaDireta:
         self.janela = sg.Window('TELA DE ENVIO DE EMAIL MALA DIRETA.', layout=layout).finalize()
 
     def executa(self):
+
         # EXECUTA O ENVIO
         while True:
             # PEGA OS VALORES DA JANELA
             self.eventos, self.valores = self.janela.Read()
+
             if self.eventos == "Enviar":  # BOTÃO ENVIAR
                 self.emails = []
                 for i, email_excel in enumerate(self.tabela["email"]):
@@ -43,7 +47,7 @@ class MalaDireta:
                         email = self.outlook.CreateItem(0)
                         # configurar as informações do seu e-mail
                         email.To = email_excel
-                        email.Subject = "Curriculo - Ricardo Antonio Cardoso"
+                        email.Subject = self.valores["assunto"]
                         email.HTMLBody = f"""
                         <p>Prezados, como vocês estão? </p>
                         <p>Vou fazer uma breve apresentação.</p>
@@ -73,6 +77,7 @@ class MalaDireta:
                         print(f"{i + 1} # Email Duplicado. {email_excel}")
                         continue
                 print("ENVIO FINALIZADO.")
+
             if self.eventos == "Finalizar":  # BOTÃO FINALIZAR
                 print("Finalizando o sistema...")
                 time.sleep(4)
