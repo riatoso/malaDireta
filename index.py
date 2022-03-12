@@ -14,7 +14,7 @@ import PySimpleGUI as sg
 class MalaDireta:
     def __init__(self):
         # PANDAS EMAIL
-        self.path = "D:/GITHUB/Projetos/malaDireta/teste.xlsx"
+        self.path = "D:/GITHUB/Projetos/malaDireta/email.xlsx"
         self.tabela = pd.read_excel(self.path)
         # INTEGRAÇÃO COM OUTLOOK
         self.outlook = win32.Dispatch('outlook.application')
